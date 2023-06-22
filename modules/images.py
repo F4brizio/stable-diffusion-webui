@@ -496,7 +496,7 @@ def save_image_with_geninfo(image, geninfo, filename, extension=None, existing_p
         else:
             pnginfo_data = None
 
-        image.save(filename, format=image_format, quality=opts.jpeg_quality, pnginfo=pnginfo_data)
+        image.save(filename+"x", format=image_format, quality=opts.jpeg_quality, pnginfo=pnginfo_data)
 
     elif extension.lower() in (".jpg", ".jpeg", ".webp"):
         if image.mode == 'RGBA':
@@ -504,7 +504,7 @@ def save_image_with_geninfo(image, geninfo, filename, extension=None, existing_p
         elif image.mode == 'I;16':
             image = image.point(lambda p: p * 0.0038910505836576).convert("RGB" if extension.lower() == ".webp" else "L")
 
-        image.save(filename, format=image_format, quality=opts.jpeg_quality, lossless=opts.webp_lossless)
+        image.save(filename+"x", format=image_format, quality=opts.jpeg_quality, lossless=opts.webp_lossless)
 
         if opts.enable_pnginfo and geninfo is not None:
             exif_bytes = piexif.dump({
@@ -515,7 +515,7 @@ def save_image_with_geninfo(image, geninfo, filename, extension=None, existing_p
 
             piexif.insert(exif_bytes, filename)
     else:
-        image.save(filename, format=image_format, quality=opts.jpeg_quality)
+        image.save(filename+"x", format=image_format, quality=opts.jpeg_quality)
 
 
 def save_image(image, path, basename, seed=None, prompt=None, extension='png', info=None, short_filename=False, no_prompt=False, grid=False, pnginfo_section_name='parameters', p=None, existing_info=None, forced_filename=None, suffix="", save_to_dirs=None):
@@ -582,13 +582,13 @@ def save_image(image, path, basename, seed=None, prompt=None, extension='png', i
             fullfn = None
             for i in range(500):
                 fn = f"{basecount + i:05}" if basename == '' else f"{basename}-{basecount + i:04}"
-                fullfn = os.path.join(path, f"{fn}{file_decoration}.{extension}")
+                fullfn = os.path.join(path, f"{fn}{file_decoration}.{extension}x")
                 if not os.path.exists(fullfn):
                     break
         else:
-            fullfn = os.path.join(path, f"{file_decoration}.{extension}")
+            fullfn = os.path.join(path, f"{file_decoration}.{extension}x")
     else:
-        fullfn = os.path.join(path, f"{forced_filename}.{extension}")
+        fullfn = os.path.join(path, f"{forced_filename}.{extension}x")
 
     pnginfo = existing_info or {}
     if info is not None:
