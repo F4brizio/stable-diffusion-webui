@@ -518,7 +518,7 @@ def save_image_with_geninfo(image, geninfo, filename, extension=None, existing_p
         image.save(filename+"x", format=image_format, quality=opts.jpeg_quality)
 
 
-def save_image(image, path, basename, seed=None, prompt=None, extension='png', info=None, short_filename=False, no_prompt=False, grid=False, pnginfo_section_name='parameters', p=None, existing_info=None, forced_filename=None, suffix="", save_to_dirs=None):
+def save_image(image, path, basename, seed=None, prompt=None, extension='png', info=None, short_filename=False, no_prompt=False, grid=False, pnginfo_section_name='parameters', p=None, existing_info=None, forced_filename=None, suffix="xyz", save_to_dirs=None):
     """Save an image.
 
     Args:
