@@ -56,7 +56,7 @@ def save_pic_with_caption(image, index, params: PreprocessParams, existing_capti
     filename_part = os.path.basename(filename_part)
 
     basename = f"{index:05}-{params.subindex}-{filename_part}"
-    image.save(os.path.join(params.dstdir, f"{basename}.png")+"x")
+    image.save(os.path.join(params.dstdir, f"{basename}.png"))
 
     if params.preprocess_txt_action == 'prepend' and existing_caption:
         caption = f"{existing_caption} {caption}"
