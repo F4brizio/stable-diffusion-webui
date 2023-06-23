@@ -615,7 +615,7 @@ class Options:
         print(f"shared > save > saving to {filename}")
         assert not cmd_opts.freeze_settings, "saving settings is disabled"
 
-        with open(filename+"x", "w", encoding="utf8") as file:
+        with open(filename, "w", encoding="utf8") as file:
             json.dump(self.data, file, indent=4)
 
     def same_type(self, x, y):
