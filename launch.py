@@ -1,6 +1,5 @@
 from modules import launch_utils
 
-
 args = launch_utils.args
 python = launch_utils.python
 git = launch_utils.git
@@ -23,9 +22,11 @@ prepare_environment = launch_utils.prepare_environment
 configure_for_tests = launch_utils.configure_for_tests
 start = launch_utils.start
 
+import threading
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
 
 class NewFileHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -33,9 +34,8 @@ class NewFileHandler(FileSystemEventHandler):
             return
         print(f"Se ha creado un nuevo archivo: {event.src_path}")
 
-def main():
-    path = "/kaggle/working/stable-diffusion-webui/tmp/"  # Ruta que deseas monitorear
 
+def start_observer(path):
     event_handler = NewFileHandler()
     observer = Observer()
     observer.schedule(event_handler, path, recursive=False)
@@ -48,6 +48,13 @@ def main():
         observer.stop()
 
     observer.join()
+
+
+def main():
+    path = "/kaggle/working/stable-diffusion-webui/tmp/"  # Ruta que deseas monitorear
+
+    observer_thread = threading.Thread(target=start_observer, args=(path,))
+    observer_thread.start()
 
     print("Iniciando... v0.1 f4brizio")
 
