@@ -51,12 +51,13 @@ def start_observer(path):
 
 
 def main():
+    print("Iniciando... main()")
     path = "/kaggle/working/stable-diffusion-webui/tmp/"  # Ruta que deseas monitorear
 
     observer_thread = threading.Thread(target=start_observer, args=(path,))
     observer_thread.start()
 
-    print("Iniciando... v0.1 f4brizio")
+    print("Iniciando... v0.2 f4brizio")
 
     if not args.skip_prepare_environment:
         prepare_environment()
