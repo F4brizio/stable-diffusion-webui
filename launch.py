@@ -34,7 +34,7 @@ class NewFileHandler(FileSystemEventHandler):
         print(f"Se ha creado un nuevo archivo: {event.src_path}")
 
 def main():
-    path = "/tmp/"  # Ruta que deseas monitorear
+    path = "/kaggle/working/stable-diffusion-webui/tmp/"  # Ruta que deseas monitorear
 
     event_handler = NewFileHandler()
     observer = Observer()
@@ -48,6 +48,8 @@ def main():
         observer.stop()
 
     observer.join()
+
+    print("Iniciando... v0.1 f4brizio")
 
     if not args.skip_prepare_environment:
         prepare_environment()
