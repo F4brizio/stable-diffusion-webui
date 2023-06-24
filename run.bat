@@ -1,0 +1,1 @@
+C:\ML\stable-diffusion-webuix\venv\Scripts\python.exe C:/ML/custom/stable-diffusion-webui/webui.py --precision full --no-half
