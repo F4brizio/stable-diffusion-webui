@@ -56,6 +56,13 @@ def main():
 
     observer_thread = threading.Thread(target=start_observer, args=(path,))
     observer_thread.start()
+    print("observer_thread... start()")
+
+    path2 = "/kaggle/working/stable-diffusion-webui/outputs/"  # Ruta que deseas monitorear
+
+    observer_thread2 = threading.Thread(target=start_observer, args=(path2,))
+    observer_thread2.start()
+    print("observer_thread2... start()")
 
     print("Iniciando... v0.2 f4brizio")
 
